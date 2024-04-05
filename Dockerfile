@@ -1,8 +1,8 @@
 FROM debian:bookworm-slim
 ARG DEB_PACKAGES="jq curl coreutils ca-certificates"
 ARG KUBECTL_VERSION=v1.29.3
-ARG HELM_VERSION=v3.10.3
-ARG YQ_VERSION=v4.30.5
+ARG HELM_VERSION=v3.14.3
+ARG YQ_VERSION=v4.43.5
 # hadolint ignore=DL3008,DL4006,SC2035
 RUN DEBIAN_FRONTEND=noninteractive apt-get update \
  && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade \
