@@ -1,5 +1,5 @@
 FROM debian:bookworm-slim
-ARG DEB_PACKAGES="jq curl coreutils ca-certificates"
+ARG DEB_PACKAGES="jq curl coreutils ca-certificates git"
 ARG KUBECTL_VERSION=v1.29.3
 ARG HELM_VERSION=v3.14.3
 ARG YQ_VERSION=v4.43.5
