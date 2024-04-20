@@ -1,6 +1,6 @@
-FROM debian:bookworm-slim
+FROM python:3.12.3-slim-bookworm
 ARG DEB_PACKAGES="jq curl coreutils ca-certificates git"
-ARG KUBECTL_VERSION=v1.29.3
+ARG KUBECTL_VERSION=v1.30.0
 ARG HELM_VERSION=v3.14.3
 ARG YQ_VERSION=v4.43.5
 # hadolint ignore=DL3008,DL4006,SC2035
@@ -10,6 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
  && apt-get clean \
  && mkdir -p /usr/local/bin \
  && rm -rf /var/lib/apt/lists/* \
+ && pip install --no-cache-dir pyyaml kubernetes requests \
  && SUFFIX="";case "$(uname -m)" in arm) SUFFIX="-armhf";ARCHITECTURE=arm;ARCH=arm;SA=armv6hf;; armv8*|aarch64*) SUFFIX="-arm64";ARCHITECTURE=arm64;ARCH=arm64;SA=aarch64;; x86_64|i686|*) ARCHITECTURE=amd64;ARCH=x86_64;SA="$ARCH";; esac \
  && curl -sL "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/${ARCHITECTURE}/kubectl" -o /usr/local/bin/kubectl \
  && echo "$(curl -sL "https://dl.k8s.io/${KUBECTL_VERSION}/bin/linux/${ARCHITECTURE}/kubectl.sha256") /usr/local/bin/kubectl" | sha256sum --check \
