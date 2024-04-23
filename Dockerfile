@@ -1,6 +1,6 @@
 FROM python:3.12.3-slim-bookworm
-ARG DEB_PACKAGES="jq curl coreutils ca-certificates git gettext-base"
-ARG KUBECTL_VERSION=v1.30.0
+ARG DEB_PACKAGES="jq curl coreutils ca-certificates git gettext-base openssh-client"
+ARG KUBECTL_VERSION=v1.29.4
 ARG HELM_VERSION=v3.14.3
 ARG YQ_VERSION=v4.43.5
 # hadolint ignore=DL3008,DL4006,SC2035
